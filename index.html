@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>P.ai – Your Premium AI Assistant</title>
+    <meta name="description" content="P.ai is a premium AI assistant with voice interaction, deep learning capabilities, and enterprise solutions.">
+    <meta name="keywords" content="AI assistant, premium AI, voice AI, enterprise AI, AI chatbot">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Preconnect to external domains -->
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- CSS and Fonts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS for scroll animations -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              premium: {
+                gold: '#FFD700',
+                platinum: '#E5E4E2',
+                diamond: '#b9f2ff',
+                dark: '#0a0a0a',
+              },
+            },
+            animation: {
+              'gradient-x': 'gradient-x 8s ease infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'bounce-slow': 'bounce 3s infinite',
+            },
+            keyframes: {
+              'gradient-x': {
+                '0%, 100%': {
+                    'background-size': '200% 200%',
+                    'background-position': 'left center'
+                },
+                '50%': {
+                    'background-size': '200% 200%',
+                    'background-position': 'right center'
+                }
+              },
+              'float': {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              'pulse': {
+                '0%, 100%': { opacity: 1 },
+                '50%': { opacity: 0.5 },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      :root {
+        --color-premium-gold: #FFD700;
+        --color-premium-platinum: #E5E4E2;
+        --color-premium-diamond: #b9f2ff;
+        --color-premium-dark: #0a0a0a;
+      }
+      
+      html {
+        scroll-behavior: smooth;
+      }
+      
+      body {
+        background-color: var(--color-premium-dark);
+        color: white;
+        transition: all 0.3s ease;
+        overflow-x: hidden;
+      }
+      
+      .premium-card::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          to bottom right,
+          rgba(255, 215, 0, 0.1),
+          rgba(255, 215, 0, 0.3),
+          rgba(229, 228, 226, 0.1),
+          rgba(185, 242, 255, 0.3)
+        );
+        transform: rotate(30deg);
+        z-index: 0;
+      }
+      
+      .glow {
+        transition: box-shadow 0.3s ease;
+      }
+      
+      .glow:hover {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+      }
+      
+      .glow-effect {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+      }
+      
+      .glow-effect:hover {
+        box-shadow: 0 0 25px rgba(255, 215, 0, 0.5);
+      }
+      
+      .white-btn {
+        background-color: #ffffff;
+        color: #000000;
+        transition: all 0.3s ease;
+      }
+      
+      .white-btn:hover {
+        background-color: var(--color-premium-gold);
+        color: #000000;
+        transform: translateY(-2px);
+      }
+      
+      .gold-btn {
+        background-color: var(--color-premium-gold);
+        color: #000000;
+        transition: all 0.3s ease;
+      }
+      
+      .gold-btn:hover {
+        background-color: #ffffff;
+        color: #000000;
+        transform: translateY(-2px);
+      }
+      
+      .gradient-text {
+        background: linear-gradient(90deg, var(--color-premium-gold), var(--color-premium-diamond));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      
+      .gradient-bg {
+        background: linear-gradient(90deg, var(--color-premium-gold), var(--color-premium-diamond));
+      }
+      
+      .hamburger-menu {
+        display: none;
+      }
+      
+      .hamburger-menu.active {
+        display: flex;
+      }
+      
+      .theme-toggle {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      
+      .theme-toggle:hover {
+        transform: rotate(30deg);
+        color: var(--color-premium-gold);
+      }
+      
+      /* Dark mode styles */
+      body.dark {
+        background-color: var(--color-premium-dark);
+        color: #ffffff;
+      }
+      
+      body.dark .bg-black {
+        background-color: var(--color-premium-dark);
+      }
+      
+      body.dark .bg-gray-900 {
+        background-color: #111827;
+      }
+      
+      body.dark .bg-gray-800 {
+        background-color: #1f2937;
+      }
+      
+      body.dark .text-white {
+        color: #ffffff;
+      }
+      
+      body.dark .text-gray-300 {
+        color: #d1d5db;
+      }
+      
+      body.dark .text-gray-400 {
+        color: #9ca3af;
+      }
+      
+      body.dark .border-gray-800 {
+        border-color: #1f2937;
+      }
+      
+      body.dark .bg-gray-800\/50 {
+        background-color: rgba(31, 41, 55, 0.5);
+      }
+      
+      body.dark .bg-gray-900\/50 {
+        background-color: rgba(17, 24, 39, 0.5);
+      }
+      
+      /* Light mode styles */
+      body.light {
+        background-color: #f5f5f5;
+        color: #000000;
+      }
+      
+      body.light .bg-black {
+        background-color: #ffffff;
+      }
+      
+      body.light .bg-gray-900 {
+        background-color: #f5f5f5;
+      }
+      
+      body.light .bg-gray-800 {
+        background-color: #e5e5e5;
+      }
+      
+      body.light .text-white {
+        color: #000000;
+      }
+      
+      body.light .text-gray-300 {
+        color: #4b5563;
+      }
+      
+      body.light .text-gray-400 {
+        color: #6b7280;
+      }
+      
+      body.light .border-gray-800 {
+        border-color: #d1d5db;
+      }
+      
+      body.light .bg-gray-800\/50 {
+        background-color: rgba(229, 231, 235, 0.5);
+      }
+      
+      body.light .bg-gray-900\/50 {
+        background-color: rgba(243, 244, 246, 0.5);
+      }
+      
+      body.light .white-btn {
+        background-color: #000000;
+        color: #ffffff;
+      }
+      
+      body.light .white-btn:hover {
+        background-color: var(--color-premium-gold);
+        color: #000000;
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #1a1a1a;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-premium-gold);
+        border-radius: 4px;
+      }
+      
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ffcc00;
+      }
+      
+      /* Tooltip styles */
+      .tooltip {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 200px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+        font-size: 14px;
+      }
+      
+      .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      /* Loading spinner */
+      .spinner {
+        width: 24px;
+        height: 24px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        border-top-color: var(--color-premium-gold);
+        animation: spin 1s ease-in-out infinite;
+      }
+      
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+      
+      /* Feature card hover effect */
+      .feature-card {
+        transition: all 0.3s ease;
+        transform: perspective(1000px) rotateX(0deg);
+      }
+      
+      .feature-card:hover {
+        transform: perspective(1000px) rotateX(10deg);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      
+      /* Floating animation for hero elements */
+      @keyframes float {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-20px); }
+      }
+      
+      .floating {
+        animation: float 6s ease-in-out infinite;
+      }
+      
+      .floating-2 {
+        animation: float 6s ease-in-out infinite 2s;
+      }
+      
+      .floating-3 {
+        animation: float 6s ease-in-out infinite 3s;
+      }
+      
+      /* Gradient border */
+      .gradient-border {
+        position: relative;
+        border-radius: 16px;
+      }
+      
+      .gradient-border::before {
+        content: '';
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(45deg, var(--color-premium-gold), var(--color-premium-diamond));
+        border-radius: 18px;
+        z-index: -1;
+        opacity: 0.7;
+      }
+      
+      .chat-bubble {
+        position: relative;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 16px;
+        padding: 16px;
+        margin: 16px 0;
+      }
+      
+      .chat-bubble::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 20px;
+        border-width: 10px 10px 0;
+        border-style: solid;
+        border-color: rgba(255, 255, 255, 0.1) transparent;
+      }
+      
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+      }
+      
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      
+      .notification-badge {
+        position: absolute;
+        top: -5px;
+        right: -5px;
+        background-color: #ff4757;
+        color: white;
+        border-radius: 50%;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+      }
+      
+      .progress-container {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      
+      .progress-bar {
+        height: 8px;
+        background: linear-gradient(90deg, var(--color-premium-gold), var(--color-premium-diamond));
+        border-radius: 8px;
+        transition: width 0.5s ease;
+      }
+      
+      .toggle-switch {
+        position: relative;
+        display: inline-block;
+        width: 50px;
+        height: 24px;
+      }
+      
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+      }
+      
+      .toggle-slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+        border-radius: 24px;
+      }
+      
+      .toggle-slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+      }
+      
+      input:checked + .toggle-slider {
+        background: linear-gradient(90deg, var(--color-premium-gold), var(--color-premium-diamond));
+      }
+      
+      input:checked + .toggle-slider:before {
+        transform: translateX(26px);
+      }
+      
+      .custom-checkbox {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+        position: relative;
+        cursor: pointer;
+      }
+      
+      .custom-checkbox input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      .checkmark {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--color-premium-gold);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      .custom-checkbox input:checked ~ .checkmark {
+        opacity: 1;
+      }
+      
+      .accordion {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .accordion-header {
+        padding: 16px 0;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      
+      .accordion-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+      }
+      
+      .accordion.active .accordion-content {
+        max-height: 500px;
+      }
+      
+      .accordion-icon {
+        transition: transform 0.3s ease;
+      }
+      
+      .accordion.active .accordion-icon {
+        transform: rotate(180deg);
+      }
+      
+      .countdown-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 0 8px;
+      }
+      
+      .countdown-value {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--color-premium-gold);
+      }
+      
+      .countdown-label {
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        opacity: 0.7;
+      }
+      
+      .custom-radio {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        position: relative;
+        cursor: pointer;
+      }
+      
+      .custom-radio input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+      
+      .custom-radio .radio-dot {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 10px;
+        height: 10px;
+        background: var(--color-premium-gold);
+        border-radius: 50%;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      .custom-radio input:checked ~ .radio-dot {
+        opacity: 1;
+      }
+      
+      .custom-range {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 3px;
+        outline: none;
+      }
+      
+      .custom-range::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        background: var(--color-premium-gold);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      
+      .custom-range::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: var(--color-premium-gold);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+      
+      .custom-dropdown {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .dropdown-select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 12px 40px 12px 16px;
+        color: white;
+        cursor: pointer;
+        width: 100%;
+      }
+      
+      .dropdown-icon {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+      }
+      
+      .tab-header {
+        display: flex;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      
+      .tab-btn {
+        padding: 12px 24px;
+        cursor: pointer;
+        position: relative;
+        opacity: 0.7;
+        transition: all 0.3s;
+      }
+      
+      .tab-btn::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: var(--color-premium-gold);
+        transform: scaleX(0);
+        transition: transform 0.3s;
+      }
+      
+      .tab-btn.active {
+        opacity: 1;
+      }
+      
+      .tab-btn.active::after {
+        transform: scaleX(1);
+      }
+      
+      .tab-content {
+        display: none;
+        padding: 24px 0;
+      }
+      
+      .tab-content.active {
+        display: block;
+      }
+      
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s;
+      }
+      
+      .modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .modal-content {
+        background: #1a1a1a;
+        border-radius: 16px;
+        max-width: 600px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+        transform: translateY(20px);
+        transition: transform 0.3s;
+      }
+      
+      .modal.active .modal-content {
+        transform: translateY(0);
+      }
+      
+      .modal-close {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        cursor: pointer;
+        font-size: 24px;
+      }
+      
+      .toast {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #333;
+        color: white;
+        padding: 16px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transform: translateY(100px);
+        opacity: 0;
+        transition: all 0.3s;
+        z-index: 1000;
+      }
+      
+      .toast.show {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      
+      .custom-tooltip {
+        position: relative;
+      }
+      
+      .custom-tooltip .tooltip-text {
+        visibility: hidden;
+        width: 200px;
+        background-color: #333;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 8px;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      .custom-tooltip:hover .tooltip-text {
+        visibility: visible;
+        opacity: 1;
+      }
+      
+      .carousel {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .carousel-inner {
+        display: flex;
+        transition: transform 0.5s ease;
+      }
+      
+      .carousel-item {
+        min-width: 100%;
+      }
+      
+      .carousel-control {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 12px;
+        cursor: pointer;
+        z-index: 10;
+        border-radius: 50%;
+      }
+      
+      .carousel-control.prev {
+        left: 16px;
+      }
+      
+      .carousel-control.next {
+        right: 16px;
+      }
+      
+      .carousel-indicators {
+        display: flex;
+        justify-content: center;
+        margin-top: 16px;
+      }
+      
+      .carousel-indicator {
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        margin: 0 4px;
+        cursor: pointer;
+      }
+      
+      .carousel-indicator.active {
+        background: var(--color-premium-gold);
+      }
+    </style>
+  </head>
+  <body class="dark">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-black z-50 flex flex-col items-center justify-center transition-opacity duration-500">
+      <div class="flex items-center space-x-2 mb-8">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-12 h-12 text-premium-gold animate-bounce">
+          <path fill-rule="evenodd" d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 11-9 0V4.125zm4.5 14.25a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clip-rule="evenodd" />
+          <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
+        </svg>
+        <h1 class="text-4xl font-bold text-premium-gold">P.ai</h1>
+      </div>
+      <div class="w-64 h-1 bg-gray-800 rounded-full overflow-hidden">
+        <div id="loading-bar" class="h-full bg-gradient-to-r from-premium-gold to-premium-diamond rounded-full" style="width: 0%"></div>
+      </div>
+      <p class="mt-4 text-gray-400">Loading premium experience...</p>
+    </div>
+
+    <!-- Navigation -->
+    <header class="flex items-center justify-between px-8 py-6 border-b border-gray-800 bg-black/80 backdrop-blur-sm sticky top-0 z-40 transition-all duration-300">
+      <div class="flex items-center space-x-2">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-premium-gold">
+          <path fill-rule="evenodd" d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 11-9 0V4.125zm4.5 14.25a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clip-rule="evenodd" />
+          <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
+        </svg>
+        <h1 class="text-3xl font-bold text-premium-gold">P.ai</h1>
+      </div>
+      
+      <nav class="hidden md:flex items-center space-x-8">
+        <a href="#features" class="text-gray-300 hover:text-premium-gold transition relative group">
+          Features
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-premium-gold transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#pricing" class="text-gray-300 hover:text-premium-gold transition relative group">
+          Pricing
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-premium-gold transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#api" class="text-gray-300 hover:text-premium-gold transition relative group">
+          API
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-premium-gold transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#enterprise" class="text-gray-300 hover:text-premium-gold transition relative group">
+          Enterprise
+          <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-premium-gold transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#" class="text-premium-gold font-medium hover:opacity-80 transition">Log In</a>
+        <a href="#pricing" class="white-btn font-medium px-6 py-2 rounded-full glow hover:shadow-lg transition-all">Get Started</a>
+        
+        <!-- Language Selector -->
+        <div class="custom-dropdown ml-4">
+          <select class="dropdown-select">
+            <option value="en">English</option>
+            <option value="es">Español</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="ja">日本語</option>
+          </select>
+          <div class="dropdown-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+              <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+        
+        <button id="theme-toggle" class="theme-toggle text-gray-300 hover:text-premium-gold">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+          </svg>
+        </button>
+      </nav>
+      
+      <button id="hamburger-btn" class="md:hidden text-white relative">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+        </svg>
+        <span class="notification-badge">3</span>
+      </button>
+      
+      <nav id="mobile-menu" class="hamburger-menu hidden md:hidden flex-col items-center absolute top-20 left-0 w-full bg-black/95 border-b border-gray-800 p-6 space-y-4">
+        <a href="#features" class="text-gray-300 hover:text-premium-gold transition py-2 w-full text-center">Features</a>
+        <a href="#pricing" class="text-gray-300 hover:text-premium-gold transition py-2 w-full text-center">Pricing</a>
+        <a href="#api" class="text-gray-300 hover:text-premium-gold transition py-2 w-full text-center">API</a>
+        <a href="#enterprise" class="text-gray-300 hover:text-premium-gold transition py-2 w-full text-center">Enterprise</a>
+        <a href="#" class="text-premium-gold font-medium py-2 w-full text-center">Log In</a>
+        <a href="#pricing" class="white-btn font-medium px-6 py-2 rounded-full glow w-full text-center mt-2">Get Started</a>
+        
+        <div class="flex justify-center space-x-4 mt-4">
+          <button id="mobile-theme-toggle" class="text-gray-300 hover:text-premium-gold">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>
+          </button>
+          
+          <div class="custom-dropdown">
+            <select class="dropdown-select">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="ja">日本語</option>
+            </select>
+            <div class="dropdown-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-4 h-4">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center px-6 relative overflow-hidden bg-black" data-aos="fade-up">
+      <div class="absolute inset-0 overflow-hidden z-0">
+        <div class="absolute top-0 left-0 w-full h-full bg-black opacity-100"></div>
+        <div class="absolute top-0 left-0 w-full h-full bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10"></div>
+        <div class="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-premium-gold blur-3xl opacity-20 floating"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-64 h-64 rounded-full bg-premium-diamond blur-3xl opacity-20 floating-2"></div>
+      </div>
+      
+      <div class="text-center max-w-4xl relative z-10">
+        <div class="inline-flex items-center bg-gray-800/50 border border-gray-700 rounded-full px-4 py-1.5 mb-6" data-aos="fade-in" data-aos-delay="100">
+          <span class="text-sm font-medium text-premium-gold">P.ai 3.0 – Now with Voice Mode</span>
+        </div>
+        <h2 class="text-5xl md:text-7xl font-bold leading-tight mb-6 animate__animated animate__fadeIn text-white">
+          P.ai: Your <span class="gradient-text">Premium</span> AI Assistant
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-400 mb-10 max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="200">
+          Powered by cutting-edge AI, P.ai offers voice interaction, thoughtful insights, and seamless integration for professionals and businesses.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6" data-aos="fade-up" data-aos-delay="300">
+          <a href="#pricing" class="white-btn font-semibold px-8 py-4 rounded-xl shadow-lg glow">Start Free Trial</a>
+          <a href="https://p.ai/api" class="gold-btn font-semibold px-8 py-4 rounded-xl flex items-center justify-center space-x-2 glow">
+            <span>Explore API</span>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5m7.5-7.5H3" />
+            </svg>
+          </a>
+        </div>
+        <div class="mt-16 flex justify-center" data-aos="zoom-in" data-aos-delay="400">
+          <div class="relative w-full max-w-4xl gradient-border">
+            <div class="relative bg-gray-900 rounded-2xl overflow-hidden">
+              <img src="https://images.unsplash.com/photo-1677442135722-5f5d4aacede3?q=80&w=800&auto=format&fit=crop" alt="P.ai Interface" class="w-full h-auto rounded-2xl border border-gray-800" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-6 bg-black" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-in">
+          <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">Discover <span class="gradient-text">P.ai</span> Features</h3>
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto">Unleash the power of AI with features designed for efficiency and innovation.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="feature-card bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-premium-gold/50 transition-all duration-300 glow" data-aos="fade-up" data-aos-delay="100">
+            <div class="w-14 h-14 bg-premium-gold/30 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-premium-gold">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3 text-white">Voice Mode</h4>
+            <p class="text-gray-400">Interact hands-free with P.ai on iOS and Android apps, powered by advanced voice recognition.</p>
+          </div>
+          <div class="feature-card bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-premium-diamond/50 transition-all duration-300 glow" data-aos="fade-up" data-aos-delay="200">
+            <div class="w-14 h-14 bg-premium-diamond/30 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-premium-diamond">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3 text-white">Think Mode</h4>
+            <p class="text-gray-400">Activate via UI for deeper, more thoughtful responses to complex queries.</p>
+          </div>
+          <div class="feature-card bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-premium-platinum/50 transition-all duration-300 glow" data-aos="fade-up" data-aos-delay="300">
+            <div class="w-14 h-14 bg-premium-platinum/30 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-premium-platinum">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3 text-white">DeepSearch Mode</h4>
+            <p class="text-gray-400">Iterative web search for comprehensive, up-to-date answers, activated via UI.</p>
+          </div>
+          <div class="feature-card bg-gray-100/50 border border-gray-200 rounded-2xl p-8 hover:border-premium-gold/50 transition-all duration-300 glow" data="aos" data-aos="fade-up" data-aos-delay="400">
+            <div class="w-14 h-14 bg-premium-gold/30 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-premium-gold">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l0.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75m0" />
+              </svg>
+              </div>
+            <h4 class="text-xl font-semibold mb-3 text-white">Turbo Mode</h4>
+            <p class="text-gray-400">3x faster response times with our optimized inference engine for power users.</p>
+          </div>
+          <div class="feature-card bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-premium-diamond/50 transition-all duration-300 glow" data-aos="fade-up" data-aos-delay="500">
+            <div class="w-14 h-14 bg-premium-diamond/30 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-premium-diamond">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375m16.5 0c0-2.278-3.694-4.125-8.25-4.125S3.75 4.097 3.75 6.375m16.5 0V11.25m-16.5-4.875V11.25m16.5 0v4.875c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125v-4.875m16.5 0c0 2.278-3.694 4.125-8.25 4.125s-8.25-1.847-8.25-4.125" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3 text-white">Custom AI Models</h4>
+            <p class="text-gray-400">Train and deploy custom AI models tailored to your specific business needs.</p>
+          </div>
+          <div class="feature-card bg-gray-900/50 border border-gray-800 rounded-2xl p-8 hover:border-premium-platinum/50 transition-all duration-300 glow" data-aos="fade-up" data-aos-delay="600">
+            <div class="w-14 h-14 bg-premium-platinum/30 rounded-xl flex items-center justify-center mb-6">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-premium-platinum">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z" />
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-3 text-white">Priority Access</h4>
+            <p class="text-gray-400">Skip the queue with guaranteed access during peak times and early feature releases.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- API Section -->
+    <section id="api" class="py-20 px-6 bg-black" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-in">
+          <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">P.ai <span class="gradient-text">API</span></h3>
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto">Integrate P.ai’s powerful AI capabilities into your applications.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div data-aos="fade-right">
+            <h4 class="text-2xl font-semibold mb-4 text-white">Build with P.ai</h4>
+            <p class="text-gray-400 mb-6">Our API allows developers to harness P.ai’s advanced AI for custom applications, from automation to analytics.</p>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mt-1 mr-2 flex-shrink-0">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              <span>Easy-to-use RESTful API</span>
+              </li>
+            <li class="flex items-center">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mt-1 mr-2 flex-shrink-0">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5 a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              <span>Support for multiple programming languages</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mt-1 mr-2 flex-shrink-0">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5 a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              <span>Scalable for high-volume applications</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mt-1 mr-2 flex-shrink-0">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+              </svg>
+              <span>Secure API key authentication</span>
+              </li>
+            </ul>
+            <a href="https://p.ai/api" class="inline-block white-btn font-medium py-3 px-8 rounded-xl glow mt-6">Explore API Docs</a>
+          </div>
+          <div class="relative" data-aos="fade-left">
+            <div class="gradient-border">
+              <div class="relative bg-gray-900 rounded-2xl overflow-hidden p-8">
+                <img src="https://images.unsplash.com/photo-1516321310764-00f3b2b26c26?q=80&w=1270&auto=format&amp;fit=crop&amp;ixlib=rb-4.0.3&amp;ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="API Integration" class="w-full h-auto rounded-2xl border border-gray-800" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-6 bg-black" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-in">
+          <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">Choose Your <span class="gradient-text">Plan</span></h3>
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto">Flexible pricing for individuals, teams, and enterprises.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          <div class="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 hover:border-premium-gold/50 transition-all" data-aos="fade-up" data-aos-delay="100">
+            <div class="mb-6">
+              <h4 class="text-xl font-semibold mb-2 text-white">Free</h4>
+              <p class="text-gray-400 mb-4">For individuals exploring P.ai</p>
+              <div class="flex items-end">
+                <span class="text-4xl font-bold text-white">$0</span>
+                <span class="text-gray-400 ml-1">/month</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mr-2">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Basic AI access</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mr-2">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>20 requests/day</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mr-2">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Standard speed</span>
+              </li>
+            </ul>
+            <a href="https://p.ai/pricing" class="block text-center white-btn font-medium py-3 px-6 rounded-xl glow">Get Started</a>
+          </div>
+          <div class="relative bg-gray-800 border border-premium-gold rounded-2xl p-8 premium-card" data-aos="fade-up" data-aos-delay="200">
+            <div class="absolute top-0 right-0 bg-premium-gold text-black text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">MOST POPULAR</div>
+            <div class="mb-6">
+              <h4 class="text-xl font-semibold mb-2 text-white">SuperP.ai</h4>
+              <p class="text-gray-400 mb-4">For professionals and teams</p>
+              <div class="flex items-end">
+                <span class="text-4xl font-bold text-white">Contact</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mr-2">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Priority AI access</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mr-2">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>500 requests/day</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mr-2">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Turbo Mode (3x faster)</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-gold mr-2">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.75-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Priority support</span>
+              </li>
+            </ul>
+            <a href="https://p.ai/pricing" class="block text-center gold-btn font-medium py-3 px-6 rounded-xl glow">Start Free Trial</a>
+          </div>
+          <div class="bg-gray-800/50 border border-gray-700 rounded-2xl p-8 hover:border-premium-diamond/50 transition-all" data-aos="fade-up" data-aos-delay="300">
+            <div class="mb-6">
+              <h4 class="text-xl font-semibold mb-2 text-white">Enterprise</h4>
+              <p class="text-gray-400 mb-4">For organizations with custom needs</p>
+              <div class="flex items-end">
+                <span class="text-4xl font-bold text-white">Custom</span>
+              </div>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mr-2">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 011.06-1.06l3.894.Scope 3.893 7.48-9.817a.75.75 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Unlimited requests</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mr-2">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Custom AI models</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mr-2">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8-10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>24/7 dedicated support</span>
+              </li>
+              <li class="flex items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mr-2">
+                <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Enterprise SLAs</span>
+              </li>
+            </ul>
+            <a href="#enterprise" class="block text-center white-btn font-medium py-3 px-6 rounded-xl glow">Contact Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-6 bg-black" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-in">
+          <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">What Our <span class="gradient-text">Users</span> Say</h3>
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto">Trusted by professionals and businesses worldwide.</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="bg-gray-800/50 border border-gray-800 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="100">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-14 rounded-xl flex items-center justify-center text-xl font-bold bg-premium-gold/30 bg-black mr-4">JD</div>
+              <div>
+                <h5 class="font-semibold text-white">John Doe</h5>
+                <p class="text-sm text-gray-400">CTO, TechCorp</p>
+              </div>
+            </div>
+            <p class="text-gray-300 italic">"P.ai’s Voice Mode has revolutionized our workflow, enabling seamless hands-free operation."</p>
+            <div class="flex mt-4">
+              <!-- Continuation of Testimonials Section -->
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <div class="bg-gray-800/50 border border-gray-800 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="200">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-14 rounded-xl flex items-center justify-center text-xl font-bold bg-premium-diamond/30 bg-black mr-4">AS</div>
+              <div>
+                <h5 class="font-semibold text-white">Alice Smith</h5>
+                <p class="text-sm text-gray-400">Founder, InnovateAI</p>
+              </div>
+            </div>
+            <p class="text-gray-300 italic">"The DeepSearch Mode provides incredibly detailed and accurate responses, saving us hours of research."</p>
+            <div class="flex mt-4">
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+          <div class="bg-gray-800/50 border border-gray-800 rounded-2xl p-8" data-aos="fade-up" data-aos-delay="300">
+            <div class="flex items-center mb-4">
+              <div class="w-12 h-14 rounded-xl flex items-center justify-center text-xl font-bold bg-premium-platinum/30 bg-black mr-4">MW</div>
+              <div>
+                <h5 class="font-semibold text-white">Michael Wong</h5>
+                <p class="text-sm text-gray-400">Product Manager, FutureTech</p>
+              </div>
+            </div>
+            <p class="text-gray-300 italic">"The API integration was seamless, and the priority support team was incredibly responsive."</p>
+            <div class="flex mt-4">
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+              <svg class="w-5 h-5 text-premium-gold" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path d="M10.868 2.884c-.321-.772-1.415-.772-1.736 0l-1.83 4.401-4.753.381c-.833.067-1.171 1.107-.536 1.651l3.62 3.102-1.106 4.637c-.194.813.691 1.456 1.405 1.02L10 15.591l4.069 2.485c.713.436 1.598-.207 1.404-1.02l-1.106-4.637 3.62-3.102c.635-.544.297-1.584-.536-1.651l-4.752-.382-1.831-4.401z" clip-rule="evenodd" />
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Enterprise Section -->
+    <section id="enterprise" class="py-20 px-6 bg-black" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-in">
+          <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">Enterprise <span class="gradient-text">Solutions</span></h3>
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto">Scalable AI solutions tailored for large organizations.</p>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div data-aos="fade-right">
+            <h4 class="text-2xl font-semibold mb-4 text-white">Custom AI for Your Business</h4>
+            <p class="text-gray-400 mb-6">P.ai offers bespoke AI solutions, including custom model training, dedicated support, and seamless integration with your existing systems.</p>
+            <ul class="space-y-3">
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mt-1 mr-2 flex-shrink-0">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Custom model development</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mt-1 mr-2 flex-shrink-0">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Dedicated account manager</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mt-1 mr-2 flex-shrink-0">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Priority deployment and scaling</span>
+              </li>
+              <li class="flex items-start">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5 text-premium-diamond mt-1 mr-2 flex-shrink-0">
+                  <path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" />
+                </svg>
+                <span>Enhanced security and compliance</span>
+              </li>
+            </ul>
+            <a href="https://p.ai/contact" class="inline-block white-btn font-medium py-3 px-8 rounded-xl glow mt-6">Contact Sales</a>
+          </div>
+          <div class="relative" data-aos="fade-left">
+            <div class="gradient-border">
+              <div class="relative bg-gray-900 rounded-2xl overflow-hidden p-8">
+                <img src="https://images.unsplash.com/photo-1516321310764-00f3b2b26c26?q=80&w=1270&auto=format&fit=crop" alt="Enterprise Solutions" class="w-full h-auto rounded-2xl border border-gray-800" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-6 bg-black" data-aos="fade-up">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16" data-aos="fade-in">
+          <h3 class="text-4xl md:text-5xl font-bold mb-6 text-white">Frequently Asked <span class="gradient-text">Questions</span></h3>
+          <p class="text-xl text-gray-400 max-w-3xl mx-auto">Find answers to common questions about P.ai.</p>
+        </div>
+        <div class="space-y-4">
+          <div class="accordion" data-aos="fade-up" data-aos-delay="100">
+            <div class="accordion-header">
+              <h4 class="text-lg font-semibold text-white">What is P.ai?</h4>
+              <svg class="accordion-icon w-6 h-6 text-premium-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div class="accordion-content text-gray-400">
+              <p class="p-4">P.ai is a premium AI assistant designed for individuals, professionals, and enterprises, offering advanced features like voice interaction, Think Mode, DeepSearch Mode, and API integration.</p>
+            </div>
+          </div>
+          <div class="accordion" data-aos="fade-up" data-aos-delay="200">
+            <div class="accordion-header">
+              <h4 class="text-lg font-semibold text-white">How does the free plan work?</h4>
+              <svg class="accordion-icon w-6 h-6 text-premium-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div class="accordion-content text-gray-400">
+              <p class="p-4">The free plan provides basic AI access with up to 20 requests per day at standard speed, perfect for individuals exploring P.ai’s capabilities.</p>
+            </div>
+          </div>
+          <div class="accordion" data-aos="fade-up" data-aos-delay="300">
+            <div class="accordion-header">
+              <h4 class="text-lg font-semibold text-white">What is DeepSearch Mode?</h4>
+              <svg class="accordion-icon w-6 h-6 text-premium-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div class="accordion-content text-gray-400">
+              <p class="p-4">DeepSearch Mode allows P.ai to perform iterative web searches to provide comprehensive and up-to-date answers, activated via the UI for premium users.</p>
+            </div>
+          </div>
+          <div class="accordion" data-aos="fade-up" data-aos-delay="400">
+            <div class="accordion-header">
+              <h4 class="text-lg font-semibold text-white">Can I integrate P.ai with my existing tools?</h4>
+              <svg class="accordion-icon w-6 h-6 text-premium-gold" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+            <div class="accordion-content text-gray-400">
+              <p class="p-4">Yes, P.ai’s API supports integration with various platforms and programming languages, enabling seamless incorporation into your workflows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 py-12 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div>
+            <div class="flex items-center space-x-2 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-premium-gold">
+                <path fill-rule="evenodd" d="M2.25 4.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875V17.25a4.5 4.5 0 11-9 0V4.125zm4.5 14.25a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clip-rule="evenodd" />
+                <path d="M10.719 21.75h9.156c1.036 0 1.875-.84 1.875-1.875v-5.25c0-1.036-.84-1.875-1.875-1.875h-.14l-8.742 8.743c-.09.089-.18.175-.274.257zM12.738 17.625l6.474-6.474a1.875 1.875 0 000-2.651L15.5 4.787a1.875 1.875 0 00-2.651 0l-.1.099V17.25c0 .126-.003.251-.01.375z" />
+              </svg>
+              <h1 class="text-2xl font-bold text-premium-gold">P.ai</h1>
+            </div>
+            <p class="text-gray-400">Your premium AI assistant for smarter workflows and innovative solutions.</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-4">Product</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="#features" class="hover:text-premium-gold transition">Features</a></li>
+              <li><a href="#pricing" class="hover:text-premium-gold transition">Pricing</a></li>
+              <li><a href="#api" class="hover:text-premium-gold transition">API</a></li>
+              <li><a href="#enterprise" class="hover:text-premium-gold transition">Enterprise</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-4">Support</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="https://p.ai/help" class="hover:text-premium-gold transition">Help Center</a></li>
+              <li><a href="https://p.ai/contact" class="hover:text-premium-gold transition">Contact Us</a></li>
+              <li><a href="https://p.ai/faq" class="hover:text-premium-gold transition">FAQ</a></li>
+              <li><a href="https://p.ai/status" class="hover:text-premium-gold transition">Status</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-lg font-semibold text-white mb-4">Connect</h4>
+            <ul class="space-y-2 text-gray-400">
+              <li><a href="https://twitter.com/pai" class="hover:text-premium-gold transition">Twitter</a></li>
+              <li><a href="https://linkedin.com/company/pai" class="hover:text-premium-gold transition">LinkedIn</a></li>
+              <li><a href="https://github.com/pai" class="hover:text-premium-gold transition">GitHub</a></li>
+              <li><a href="https://p.ai/community" class="hover:text-premium-gold transition">Community</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12 border-t border-gray-800 pt-6 text-center text-gray-400">
+          <p>&copy; 2025 P.ai. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      // Initialize AOS
+      AOS.init({
+        duration: 800,
+        once: true,
+      });
+
+      // Loading Screen Animation
+      window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loading-screen');
+        const loadingBar = document.getElementById('loading-bar');
+        let width = 0;
+        const interval = setInterval(() => {
+          if (width >= 100) {
+            clearInterval(interval);
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+              loadingScreen.style.display = 'none';
+            }, 500);
+          } else {
+            width += 2;
+            loadingBar.style.width = `${width}%`;
+          }
+        }, 50);
+      });
+
+      // Hamburger Menu Toggle
+      const hamburgerBtn = document.getElementById('hamburger-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      hamburgerBtn.addEventListener('click', () => {
+        mobileMenu.classList.toggle('active');
+      });
+
+      // Theme Toggle
+      const themeToggle = document.getElementById('theme-toggle');
+      const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+      const toggleTheme = () => {
+        document.body.classList.toggle('dark');
+        document.body.classList.toggle('light');
+        localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      };
+      themeToggle.addEventListener('click', toggleTheme);
+      mobileThemeToggle.addEventListener('click', toggleTheme);
+
+      // Load Theme Preference
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.body.classList.add(savedTheme);
+
+      // Accordion Functionality
+      const accordions = document.querySelectorAll('.accordion');
+      accordions.forEach(accordion => {
+        accordion.querySelector('.accordion-header').addEventListener('click', () => {
+          accordion.classList.toggle('active');
+        });
+      });
+    </script>
+  </body>
+</html>
